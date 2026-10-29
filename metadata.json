@@ -1,0 +1,6 @@
+{
+  "name": "VozDoc - Lector PDF con Pantalla Bloqueada",
+  "description": "Lector de PDFs y documentos en voz alta que continúa reproduciendo con la pantalla apagada o bloqueada del móvil, con controles de sistema, voces naturales y modo PWA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

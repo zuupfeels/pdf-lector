@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile representing registered users",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "User saved PDF or text document for lockscreen audio reading",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 300 },
+        "filename": { "type": "string", "maxLength": 300 },
+        "fileSize": { "type": "string", "maxLength": 50 },
+        "totalPages": { "type": "integer" },
+        "totalParagraphs": { "type": "integer" },
+        "paragraphs": { "type": "array" },
+        "currentParagraphIndex": { "type": "integer" },
+        "progressPercent": { "type": "integer" },
+        "dateAdded": { "type": "string" },
+        "colorAccent": { "type": "string" },
+        "category": { "type": "string" },
+        "summary": { "type": "string", "maxLength": 4000 }
+      },
+      "required": ["id", "userId", "title", "paragraphs"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile storage"
+    },
+    "/users/{userId}/documents/{docId}": {
+      "schema": "Document",
+      "description": "User personal document library and listening progress"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="128" fill="url(#bg)" />
+  <rect width="504" height="504" x="4" y="4" rx="124" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4" />
+
+  <!-- Center document/book motif -->
+  <g transform="translate(106, 110)">
+    <!-- Document outline -->
+    <path d="M40 20 C40 9 49 0 60 0 L210 0 C218 0 226 4 231 10 L260 42 C265 47 268 54 268 62 L268 270 C268 281 259 290 248 290 L60 290 C49 290 40 281 40 270 Z" 
+          fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="6" />
+    
+    <!-- Folded corner -->
+    <path d="M210 0 L210 46 C210 55 217 62 226 62 L268 62 Z" fill="#334155" />
+
+    <!-- Sound waves emitting from text lines -->
+    <!-- Soundwave bars -->
+    <g transform="translate(70, 110)">
+      <rect x="0" y="30" width="8" height="30" rx="4" fill="url(#accent)" />
+      <rect x="18" y="15" width="8" height="60" rx="4" fill="url(#accent)" />
+      <rect x="36" y="0" width="8" height="90" rx="4" fill="url(#accent)" filter="url(#glow)" />
+      <rect x="54" y="20" width="8" height="50" rx="4" fill="url(#accent)" />
+      <rect x="72" y="10" width="8" height="70" rx="4" fill="url(#accent)" />
+      <rect x="90" y="25" width="8" height="40" rx="4" fill="url(#accent)" />
+      <rect x="108" y="5" width="8" height="80" rx="4" fill="url(#accent)" filter="url(#glow)" />
+      <rect x="126" y="22" width="8" height="46" rx="4" fill="url(#accent)" />
+      <rect x="144" y="32" width="8" height="26" rx="4" fill="url(#accent)" />
+    </g>
+
+    <!-- Headphone / Audio badge on bottom-right -->
+    <circle cx="230" cy="250" r="48" fill="#0f172a" stroke="url(#accent)" stroke-width="4" filter="url(#glow)" />
+    <!-- Audio wave / play icon inside badge -->
+    <path d="M222 234 L244 250 L222 266 Z" fill="#38bdf8" />
+  </g>
+</svg>

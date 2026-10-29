@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // User profile documents
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && isOwner(userId);
+
+      // User's private documents collection
+      match /documents/{docId} {
+        allow read, delete: if isSignedIn() && isOwner(userId);
+        
+        allow create: if isSignedIn() 
+          && isOwner(userId) 
+          && isValidId(docId)
+          && incoming().userId == userId
+          && incoming().title is string
+          && incoming().title.size() <= 300
+          && incoming().paragraphs is list;
+
+        allow update: if isSignedIn() 
+          && isOwner(userId) 
+          && isValidId(docId)
+          && incoming().userId == userId
+          && incoming().title is string
+          && incoming().title.size() <= 300
+          && incoming().paragraphs is list;
+      }
+    }
+  }
+}
